@@ -1,0 +1,5 @@
+INSERT INTO Prueba.dbo.History (tag_name,Value,date_time,ww_retrieval_mode,ww_resolution) 
+VALUES('ValuePrueba',2022-03-20,258,'DELTA',1563);
+
+INSERT INTO Prueba.dbo.History (tag_name,Value,date_time,ww_retrieval_mode,ww_resolution) 
+VALUES('ValuePrueba2',2022-03-20,258,'DELTA',1563);

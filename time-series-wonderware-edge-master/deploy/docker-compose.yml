@@ -1,0 +1,40 @@
+version: '2'
+
+services:
+  keycloak:
+    image: jboss/keycloak:16.0.0
+    container_name: wonderware-sso
+    ports:
+      - "18080:8080"
+    environment:
+      DB_VENDOR: "h2"
+      KEYCLOAK_USER: "admin"
+      KEYCLOAK_PASSWORD: "admin"
+      KEYCLOAK_IMPORT: "/tmp/wonderware-realm.json"
+      KEYCLOAK_FRONTEND_URL: "http://localhost:18080/auth"
+    volumes: 
+      - "./keycloak-realm/wonderware-realm-sample.json:/tmp/wonderware-realm.json"
+      - "./keycloak-db:/opt/jboss/keycloak/standalone/data/"
+      
+  sqlserver:
+    image: mcr.microsoft.com/mssql/server
+    container_name: sqlServer
+    ports:
+      - "1433:1433"
+    environment:
+      ACCEPT_EULA: "Y"
+      SA_PASSWORD: "Aeiou1234"
+      
+  wonderwareedge:
+    image: nexus.tsk.cloud/time-series-wonderware-edge
+    container_name: wonderware-edge
+    ports:
+      - "8887:80"
+    environment:
+      db_url: "jdbc:sqlserver://10.5.1.112:1433;databaseName=Runtime"
+      db_username: "sa"
+      db_password: "Aeiou1234"
+      server_port: "80"
+      microservice: "time-series-wonderware-edge"
+      keycloak.auth-server-url: "http://keycloak:8080/auth" 
+

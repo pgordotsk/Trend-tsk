@@ -1,0 +1,94 @@
+package com.grupotsk.timeseries.model;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+
+
+@Entity
+@Table(name = "ts_history")
+public class Values {
+
+	@Id
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "tag_name")
+	private String tagname;
+	@Column(name = "Value")
+	private float value;
+	@Column(name = "date_time")
+	private String datetime;
+	@Column(name = "ww_retrieval_mode")
+	private String retrievalModel;
+	@Column(name = "ww_resolution")
+	private int resolution;
+	@Column(name = "StateTime")
+	private int stateTime;
+
+	public Values() {};
+
+
+	public Values(String tagname, float value, String datetime, String retrievalModel, int resolution) {
+		
+		this.tagname = tagname;
+		this.value = value;
+		this.datetime = datetime;
+		this.retrievalModel = retrievalModel;
+		this.resolution = resolution;
+		
+	}
+
+	public int getResolution() {
+		return resolution;
+	}
+
+	public void setResolution(int resolution) {
+		this.resolution = resolution;
+	}
+
+	public float getValue() {
+		return value;
+	}
+
+	public void setValue(float value) {
+		this.value = value;
+	}
+
+	public String getRetrievalModel() {
+		return retrievalModel;
+	}
+
+	public void setRetrievalModel(String retrievalModel) {
+		this.retrievalModel = retrievalModel;
+	}
+
+	public String getDatetime() {
+		return datetime;
+	}
+
+	public void setDatetime(String datetime) {
+		this.datetime = datetime;
+	}
+
+	public void setTagname(String tagname) {
+		this.tagname = tagname;
+	}
+
+	public String getTagname() {
+		return tagname;
+	}
+
+
+	@Override
+	public String toString() {
+		return "Values [tagname=" + tagname + ", value=" + value + ", datetime=" + datetime + ", retrievalModel="
+				+ retrievalModel + ", resolution="+resolution+"]";
+	}
+
+
+		
+
+}

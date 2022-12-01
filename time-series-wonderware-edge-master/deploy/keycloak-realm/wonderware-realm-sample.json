@@ -1,0 +1,104 @@
+{
+  "id": "wonderware",
+  "realm": "wonderware",
+  "displayName": "Wonderware Edge",
+  "enabled": true,
+  "sslRequired": "none",
+  "registrationAllowed": false,
+  "users" : [
+    {
+      "username" : "adminwonderware",
+      "enabled": true,
+      "credentials" : [
+        { "type" : "password",
+          "value" : "adminwonderware123" }
+      ],
+      "realmRoles": [],
+      "applicationRoles": {        
+        "wonderware-app": [ "user", "admin"]
+      }
+    }
+  ],
+  "roles": {
+    "realm": [],
+    "client": {
+      "wonderware-app": [
+        {
+          "name": "user",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "wonderware"
+        },
+        {
+          "name": "admin",
+          "composite": false,
+          "clientRole": true,
+          "containerId": "wonderware"
+        }
+      ]
+    }
+  },
+  "groups": [],
+  "defaultRoles": [],
+  "requiredCredentials": [ "password" ],
+  "scopeMappings": [],
+  "clientScopeMappings": {
+    "wonderware-app": [
+      {
+        "client": "wonderware-app-js",
+        "roles": [
+          "admin",
+          "user"
+        ]
+      },
+      {
+        "client": "wonderware-postman",
+        "roles": [
+          "admin",
+          "user"
+        ]
+      }
+    ]
+  },
+  "clients": [
+    {
+      "clientId": "wonderware-app-js",
+      "enabled": true,
+      "publicClient": true,
+      "redirectUris": [
+        "http://localhost:8080/*"
+      ],
+      "webOrigins": [
+        "+"
+      ],
+      "fullScopeAllowed": false,
+      "protocolMappers": []
+    },
+    {
+      "clientId": "wonderware-postman",
+      "secret": "2c22011e-e6e5-4e46-b4c3-e19b952fec6a",
+      "directAccessGrantsEnabled": true,
+      "enabled": true,
+      "publicClient": false,
+      "redirectUris": [
+        "http://localhost:8080/*"
+      ],
+      "webOrigins": [
+        "+"
+      ],
+      "fullScopeAllowed": false,
+      "protocolMappers": []
+    }
+  ],
+  "applications": [
+    {
+      "name": "wonderware-app",
+      "enabled": true,
+      "bearerOnly": true,
+      "defaultRoles": [
+        "user"
+      ]
+    }
+  ],
+  "keycloakVersion": "10.0.1"
+}

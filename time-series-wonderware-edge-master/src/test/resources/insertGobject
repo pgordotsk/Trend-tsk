@@ -1,0 +1,4 @@
+INSERT INTO Prueba.dbo.Grgobject
+(gobject_id, hierarchical_name, hosting_tree_level, area_gobject_id, hosted_by_gobject_id)
+VALUES(1, 'Prueba1', '5', '555', 0);
+

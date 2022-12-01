@@ -1,0 +1,5 @@
+INSERT INTO Prueba.dbo.Tag (tag_name) 
+VALUES('ValuePrueba');
+
+INSERT INTO Prueba.dbo.Tag (tag_name) 
+VALUES('ValuePrueba2');

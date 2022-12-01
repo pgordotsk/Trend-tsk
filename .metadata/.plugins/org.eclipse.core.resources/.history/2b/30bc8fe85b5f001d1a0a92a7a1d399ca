@@ -1,0 +1,67 @@
+package com.grupotsk.timeseries.repository;
+
+
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
+import org.springframework.data.jpa.repository.JpaRepository;
+import com.grupotsk.timeseries.model.Values;
+
+
+
+public interface ValuesRepository extends JpaRepository<Values, Long> {
+
+
+	List<Values> findByTagnameAndDatetimeBetween(String string,String dateI, String dateF);
+
+	default List<Values> find(String string,String dateI, String dateF,String retrieval,Integer cycleCount){
+		
+
+		List<Values> val = new ArrayList<>();
+		Values v = null;
+
+		String connectionUrl =
+				"jdbc:sqlserver://10.5.1.103:1433;"+ "database=Runtime;"
+						+ "user=sa;"
+						+ "password=Aeiou1234;";
+
+		ResultSet resultSet = null;
+
+		try (Connection connection = DriverManager.getConnection(connectionUrl);
+				Statement statement = connection.createStatement();) {
+
+			// Create and execute a SELECT SQL statement.
+			     
+			String selectSql = "SELECT tag_name, Value, date_time, ww_retrieval_mode, ww_resolution"
+					+ "  FROM [Runtime].[dbo].[ts_history] where tag_name like '"+ string +"' and (date_time >= '"+ dateI +"' and date_time <= '"+ dateF +"')"
+							+ "and ww_retrieval_mode = '"+retrieval+"'"
+									+ "AND wwCycleCount = "+cycleCount+"\n"
+					+ "";
+
+
+			resultSet = statement.executeQuery(selectSql);
+
+			// Print results from select statement
+			while (resultSet.next()) {
+
+				v = new Values(resultSet.getString(1), Float.parseFloat(resultSet.getString(2)),resultSet.getString(3),resultSet.getString(4),Integer.parseInt(resultSet.getString(5)));
+				System.out.println("PP: "+Integer.parseInt(resultSet.getString(5)));
+
+				val.add(v);
+			}
+			
+			connection.close();
+		}
+		catch (SQLException e) {
+			e.printStackTrace();
+		}
+	
+		return val;
+
+	}
+
+}
