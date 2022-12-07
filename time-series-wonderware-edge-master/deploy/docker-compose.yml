@@ -31,7 +31,7 @@ services:
     ports:
       - "8887:80"
     environment:
-      db_url: "jdbc:sqlserver://10.5.1.112:1433;databaseName=Runtime"
+      db_url: "jdbc:sqlserver://172.17.0.94:1433;databaseName=Runtime"
       db_username: "sa"
       db_password: "Aeiou1234"
       server_port: "80"

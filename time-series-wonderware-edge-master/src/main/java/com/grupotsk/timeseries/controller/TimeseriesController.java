@@ -16,7 +16,7 @@ import com.grupotsk.timeseries.repository.ValuesRepository;
 
 @RestController
 
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://172.17.0.123")
 public class TimeseriesController {
 
 	@Autowired
