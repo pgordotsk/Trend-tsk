@@ -27,7 +27,7 @@ public interface AtributesRepository extends JpaRepository<Atributes, Long> {
 
 			//cambiamos la dirección contra la que consultamos
 		String connectionUrl =
-				"jdbc:sqlserver://172.17.0.94:1433;"+ "database=Runtime;"
+				"jdbc:sqlserver://10.5.1.112:1433;"+ "database=HistoryClient;"
 						+ "user=sa;"
 						+ "password=Aeiou1234;";
 
