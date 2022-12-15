@@ -39,6 +39,10 @@ public class NewStop {
 	private String minParadaPri;
 	@Column(name="motivo_parada_segunda")
 	private String motivoParadaSeg;
+	@Column(name="tiempo_parada")
+	private String tiempoParada;
+	@Column(name="observaciones")
+	private String observaciones;
 	
 	
 	public NewStop() {
@@ -48,7 +52,7 @@ public class NewStop {
 
 	public NewStop(String tagName, String dateTime, String codParada, String fechaProd, String codMaqui,
 			String desMaqui, String codTurno, String fechaIni, String fechaFin, String motivo, String desMotivo,
-			String minParadaPri, String motivoParadaSeg) {
+			String minParadaPri, String motivoParadaSeg, String tiempoParada, String observaciones) {
 		
 		this.tagName = tagName;
 		this.dateTime = dateTime;
@@ -63,6 +67,8 @@ public class NewStop {
 		this.desMotivo = desMotivo;
 		this.minParadaPri = minParadaPri;
 		this.motivoParadaSeg = motivoParadaSeg;
+		this.tiempoParada = tiempoParada;
+		this.observaciones = observaciones;
 	}
 	
 	
@@ -211,9 +217,14 @@ public class NewStop {
 		return "NewStop [tagName=" + tagName + ", dateTime=" + dateTime + ", codParada=" + codParada + ", fechaProd="
 				+ fechaProd + ", codMaqui=" + codMaqui + ", desMaqui=" + desMaqui + ", codTurno=" + codTurno
 				+ ", fechaIni=" + fechaIni + ", fechaFin=" + fechaFin + ", motivo=" + motivo + ", desMotivo="
-				+ desMotivo + ", minParadaPri=" + minParadaPri + ", motivoParadaSeg=" + motivoParadaSeg + "]";
+				+ desMotivo + ", minParadaPri=" + minParadaPri + ", motivoParadaSeg=" + motivoParadaSeg
+				+ ", tiempoParada=" + tiempoParada + ", observaciones=" + observaciones + "]";
 	}
-	
+
+
+
+
+
 	
 	
 }
