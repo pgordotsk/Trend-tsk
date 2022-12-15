@@ -27,7 +27,7 @@ public interface StopsRepository extends JpaRepository<Stops, Long> {
 
 		//cambiamos la dirección contra la que consultamos
 		String connectionUrl =
-				"jdbc:sqlserver://10.5.1.103:1433;"+ "database=Test_Tubacex;"
+				"jdbc:sqlserver://10.5.1.112:1433;"+ "database=HistorianClient;"
 						+ "user=sa;"
 						+ "password=Aeiou1234;";
 
