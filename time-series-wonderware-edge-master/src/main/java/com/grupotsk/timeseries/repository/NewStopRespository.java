@@ -23,7 +23,7 @@ public interface NewStopRespository extends JpaRepository<NewStop, Long> {
 			String fechaFin,String motivo,String desMotivo,String minutosPriParada, String motivoSegPar) {
 		//cambiamos la dirección contra la que consultamos
 		String connectionUrl =
-				"jdbc:sqlserver://10.5.1.112:1433;"+ "database=HistorianClient;"
+				"jdbc:sqlserver://172.17.0.94:1433;"+ "database=HistorianClient;"
 						+ "user=sa;"
 						+ "password=Aeiou1234;";
 
@@ -82,7 +82,7 @@ public interface NewStopRespository extends JpaRepository<NewStop, Long> {
 
 		//cambiamos la dirección contra la que consultamos
 		String connectionUrl =
-				"jdbc:sqlserver://10.5.1.112:1433;"+ "database=HistorianClient;"
+				"jdbc:sqlserver://172.17.0.94:1433;"+ "database=HistorianClient;"
 						+ "user=sa;"
 						+ "password=Aeiou1234;";
 
@@ -130,7 +130,7 @@ public interface NewStopRespository extends JpaRepository<NewStop, Long> {
 		
 		//cambiamos la dirección contra la que consultamos
 		String connectionUrl =
-				"jdbc:sqlserver://10.5.1.112:1433;"+ "database=HistorianClient;"
+				"jdbc:sqlserver://172.17.0.94:1433;"+ "database=HistorianClient;"
 						+ "user=sa;"
 						+ "password=Aeiou1234;";
 
