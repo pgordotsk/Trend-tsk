@@ -21,9 +21,10 @@ public interface NewStopRespository extends JpaRepository<NewStop, Long> {
 
 	default  boolean insert(String tagname,String dateTime,String codParada,String fechaProd,String codMaqui,String desMaqui,String codTurno,String fechaIni,
 			String fechaFin,String motivo,String desMotivo,String minutosPriParada, String motivoSegPar) {
+		
 		//cambiamos la dirección contra la que consultamos
 		String connectionUrl =
-				"jdbc:sqlserver://172.17.0.94:1433;"+ "database=HistorianClient;"
+				"jdbc:sqlserver://10.5.1.112:1433;"+ "database=HistorianClient;"
 						+ "user=sa;"
 						+ "password=Aeiou1234;";
 
@@ -82,7 +83,7 @@ public interface NewStopRespository extends JpaRepository<NewStop, Long> {
 
 		//cambiamos la dirección contra la que consultamos
 		String connectionUrl =
-				"jdbc:sqlserver://172.17.0.94:1433;"+ "database=HistorianClient;"
+				"jdbc:sqlserver://10.5.1.112:1433;"+ "database=HistorianClient;"
 						+ "user=sa;"
 						+ "password=Aeiou1234;";
 
@@ -92,7 +93,6 @@ public interface NewStopRespository extends JpaRepository<NewStop, Long> {
 				Statement statement = connection.createStatement();) {
 
 			// Create and execute a SELECT SQL statement.
-
 			String selectSql = "Select * from dbo.Stop  where (tag_name like '"+name+"' AND date_time like '"+date+"')";
 				
 
@@ -106,7 +106,8 @@ public interface NewStopRespository extends JpaRepository<NewStop, Long> {
 				v = new NewStop(resultSet.getString(1),resultSet.getString(2),resultSet.getString(3),
 						resultSet.getString(4),resultSet.getString(5),resultSet.getString(6),
 						resultSet.getString(7),resultSet.getString(8),resultSet.getString(9),
-						resultSet.getString(10),resultSet.getString(11),resultSet.getString(12), resultSet.getString(13),resultSet.getString(14));
+						resultSet.getString(10),resultSet.getString(11),resultSet.getString(12), 
+						resultSet.getString(13),resultSet.getString(14),resultSet.getString(15));
 
 
 				val.add(v);
@@ -124,13 +125,13 @@ public interface NewStopRespository extends JpaRepository<NewStop, Long> {
 
 
 	
-	default  boolean insert2(String tagname,String dateTime,String codParada,String fechaProd,String codMaqui,String desMaqui,String codTurno,String fechaIni,
-			String fechaFin,String motivo,String desMotivo,String minutosPriParada, String motivoSegPar, String tiempoParada){
+	default  void insert2(String tagname,String dateTime,String codParada,String fechaProd,String codMaqui,String desMaqui,String codTurno,String fechaIni,
+			String fechaFin,String motivo,String desMotivo,String minutosPriParada, String motivoSegPar, String tiempoParada, String observaciones){
 
 		
 		//cambiamos la dirección contra la que consultamos
 		String connectionUrl =
-				"jdbc:sqlserver://172.17.0.94:1433;"+ "database=HistorianClient;"
+				"jdbc:sqlserver://10.5.1.112:1433;"+ "database=HistorianClient;"
 						+ "user=sa;"
 						+ "password=Aeiou1234;";
 
@@ -138,7 +139,6 @@ public interface NewStopRespository extends JpaRepository<NewStop, Long> {
 				Statement statement = connection.createStatement();) {
 
 			// Create and execute a SELECT SQL statement.
-
 			String selectSql = "If exists (Select tag_name, date_time from dbo.Stop where tag_name like '"+tagname+"' and date_time like '"+dateTime+"')\n"
 					+ "	begin \n"
 					+ "		update dbo.Stop set\n"
@@ -153,7 +153,8 @@ public interface NewStopRespository extends JpaRepository<NewStop, Long> {
 					+ "		des_motivo = '"+desMotivo+"',\n"
 					+ "		minutos_parada_primera = '"+minutosPriParada+"',\n"
 					+ "		motivo_parada_segunda = '"+motivoSegPar+"',\n"
-					+ "     tiempo_parada = '"+tiempoParada+"'\n"
+					+ "     tiempo_parada = '"+tiempoParada+"',\n"
+					+ "     observaciones = '"+observaciones+"'\n"
 					+ "		where tag_name like '"+tagname+"' and date_time like '"+dateTime+"'\n"
 					+ "	end\n"
 					+ "else\n"
@@ -172,7 +173,8 @@ public interface NewStopRespository extends JpaRepository<NewStop, Long> {
 					+ "           ,[des_motivo]\n"
 					+ "           ,[minutos_parada_primera]\n"
 					+ "           ,[motivo_parada_segunda]\n"
-					+ "			  ,[tiempo_parada])\n"
+					+ "			  ,[tiempo_parada]\n"
+					+ "			  ,[observaciones])\n"
 					+ "     VALUES\n"
 					+ "          ( '"+tagname+"',\n"
 					+ "           '"+dateTime+"',\n"
@@ -187,12 +189,13 @@ public interface NewStopRespository extends JpaRepository<NewStop, Long> {
 					+ "           '"+desMotivo+"',\n"
 					+ "           '"+minutosPriParada+"',\n"
 					+ "           '"+motivoSegPar+"',\n"
-					+ "           '"+tiempoParada+"')\n"
+					+ "           '"+tiempoParada+"',\n"
+					+ "           '"+observaciones+"')\n"
 					+ "end";
 				
 
 		
-
+			// Ejecutamos la query
 			statement.executeQuery(selectSql);
 
 			
@@ -204,7 +207,7 @@ public interface NewStopRespository extends JpaRepository<NewStop, Long> {
 			e.printStackTrace();
 		}
 
-		return true;
+		
 
 	}
 
